@@ -1,6 +1,6 @@
 # Ansible Setup in Amazon Linux VMs #
 
-## Step-0: Create 3 Amazon Linux VMs in AWS (Free Tier Eligible - t2.micro)
+## Step-0: Create 3 Amazon Linux VMs in AWS (Free Tier Eligible - t3.micro)
 
 1 - Control Node <br/>
 2 - Managed Nodes / host Nodes
