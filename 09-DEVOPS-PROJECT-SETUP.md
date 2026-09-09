@@ -19,14 +19,14 @@ node {
 1) Use Pipeline Syntax and Generate Script for Git Clone with Repo Details
 
 ```     
-  git credentialsId: 'GIT-Credentials', url: 'https://github.com/ashokitschool/maven-web-app.git'
+  git credentialsId: 'GIT-Credentials', url: 'https://github.com/rochdi1/maven-web-app.git'
 ```
 
 2) Add Generated Script in Pipeline as a stage
 
 ```
  stage('clone repo') {        
-  git credentialsId: 'GIT-Credentials', url: 'https://github.com/ashokitschool/maven-web-app.git'
+  git credentialsId: 'GIT-Credentials', url: 'https://github.com/rochdi1/maven-web-app.git'
 }
 ```
 
@@ -84,7 +84,7 @@ stage('SonarQube analysis') {
 4) Generate Nexus Pipeline Syntax
 ```
 stage ('Nexus Upload'){
-nexusArtifactUploader artifacts: [[artifactId: '01-Maven-Web-App', classifier: '', file: 'target/01-maven-web-app.war', type: 'war']], credentialsId: 'Nexus-Credentials', groupId: 'in.ashokit', nexusUrl: '13.127.185.241:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'ashokit-snapshot-repository', version: '1.0-SNAPSHOT'
+nexusArtifactUploader artifacts: [[artifactId: '01-Maven-Web-App', classifier: '', file: 'target/01-maven-web-app.war', type: 'war']], credentialsId: 'Nexus-Credentials', groupId: 'in.rochdi', nexusUrl: '13.127.185.241:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'ashokit-snapshot-repository', version: '1.0-SNAPSHOT'
 }
 ```
 
