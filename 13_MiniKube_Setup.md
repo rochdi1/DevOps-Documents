@@ -1,7 +1,7 @@
 ## Step-1 : Setup Linux VM
 
 1) Login into AWS Cloud account
-2) Create Linux VM with Ubuntu AMI (t2.medium or t3.medium)
+2) Create Linux VM with Ubuntu AMI (c7i-flex.large or t3.medium)
 3) Select Storage as 50 GB (Default is 8 GB only for Linux)
 2) Create Linux VM and connect to it using SSH Client
 
