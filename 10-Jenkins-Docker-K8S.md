@@ -7,7 +7,7 @@
 
 # Step - 1 : Create EKS Management Host in AWS #
 
-1) Launch new Ubuntu VM using AWS Ec2 ( t2.micro )	  
+1) Launch new Ubuntu VM using AWS Ec2 ( t3.micro )	  
 2) Connect to machine and install kubectl using below commands  
 ```
 curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
@@ -52,10 +52,6 @@ eksctl create cluster --name cluster-name  \
 --zones <AZ-1>,<AZ-2>
 
 ```
-eksctl create cluster --name ashokit-cluster --region ap-south-1 --node-type t2.medium  --zones ap-south-1a,ap-south-1b
-```
-
-```
 eksctl create cluster --name rochdi-cluster --region eu-central-1 --node-type c7i-flex.large --zones eu-central-1a,eu-central-1b
 ```
 
@@ -79,13 +75,13 @@ java -version
 
 5) Install Jenkins
 ```
-sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
-  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
-sudo apt-get update
-sudo apt-get install jenkins
+sudo apt update
+sudo apt install jenkins
 ```
 6) Start Jenkins
 
@@ -160,7 +156,9 @@ kubectl version --short --client
 3) Execute below commands in Jenkins Server and paste kube config file for ubuntu user to check EKS Cluster info<br/>
 
 ```
- aws eks update-kubeconfig --region ap-south-1 --name <your-eks-cluster-name>
+ aws eks update-kubeconfig --region <your-region> --name <your-eks-cluster-name>
+
+ aws eks update-kubeconfig --region eu-central-1 --name rochdi-cluster
 ```
 
 4) check eks nodes <br/>
