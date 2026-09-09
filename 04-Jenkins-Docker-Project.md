@@ -7,26 +7,26 @@
 
 ## Step-1 : Jenkins Server Setup in Linux VM ##
 
-1) Create Ubuntu VM using AWS EC2 (t2.medium) <br/>
+1) Create Ubuntu VM using AWS EC2 (c7i-flex.large) <br/>
 2) Enable 8080 Port Number in Security Group Inbound Rules
 3) Connect to VM using MobaXterm
 4) Install Java
 
 ```
 sudo apt update
-sudo apt install fontconfig openjdk-17-jre
+sudo apt install fontconfig openjdk-21-jre
 java -version
 ```
 
 3) Install Jenkins
 ```
-sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
-  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
-sudo apt-get update
-sudo apt-get install jenkins
+sudo apt update
+sudo apt install jenkins
 ```
 4) Start Jenkins
 
@@ -86,7 +86,7 @@ pipeline {
     stages {
         stage('clone') {
             steps {
-              git 'https://github.com/ashokitschool/maven-web-app.git'
+              git 'https://github.com/rochdi1/maven-web-app.git'
             }
         }
         stage('build'){
@@ -96,14 +96,14 @@ pipeline {
         }
         stage('docker image'){
             steps {
-                sh 'docker build -t ashokit/mavenwebapp .'
+                sh 'docker build -t rochdi1/mavenwebapp .'
             }
         }
         stage('docker container'){
             steps{
                 sh 'docker stop javaapp'
                 sh 'docker rm javaapp'
-                sh 'docker run -d -p 8081:8080 --name javaapp ashokit/mavenwebapp'
+                sh 'docker run -d -p 8081:8080 --name javaapp rochdi1/mavenwebapp'
             }
         }
     }
