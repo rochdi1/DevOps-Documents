@@ -101,8 +101,12 @@ pipeline {
         }
         stage('docker container'){
             steps{
-                sh 'docker stop javaapp'
-                sh 'docker rm javaapp'
+                 sh '''
+                    if [ \$(docker ps -aq -f name=^javaapp\$) ]; then
+                        docker stop javaapp
+                        docker rm javaapp
+                    fi
+                '''
                 sh 'docker run -d -p 8081:8080 --name javaapp rochdi1/mavenwebapp'
             }
         }
